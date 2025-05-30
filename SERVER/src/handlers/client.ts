@@ -44,9 +44,12 @@ export const deleteClient = async (req: Request, res: Response) => {
 
 export const saveClient = async (req: Request, res: Response) => {
   try {
-    const { nombre, placas, auto, color } = req.body;
+    console.log('Request body:', req.body); // Debugging incoming data
+    const { nombre, apellido, telefono, placas, auto, color } = req.body;
     const newClient = await Client.create({
       nombre,
+      apellido,
+      telefono,
       placas,
       auto,
       color,

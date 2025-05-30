@@ -12,10 +12,27 @@ function Form({ dispatch }: FormProps) {
   const [placas, setPlacas] = useState("");
   const [auto, setAuto] = useState("");
   const [color, setColor] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [telefono, setTelefono] = useState("");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!nombre || !placas || !auto || !color || !apellido || !telefono) {
+      setMessage("Todos los campos son obligatorios");
+      return;
+    }
+
+    const newClient = {
+      nombre,
+      apellido,
+      telefono,
+      placas,
+      auto,
+      color,
+    };
+
     const newActivity = {
       id: Date.now().toString(),
       category: 1, // Ejemplo de categoría
@@ -28,6 +45,8 @@ function Form({ dispatch }: FormProps) {
       calorias: 0, // Valor predeterminado para calorías
       auto,
       color,
+      apellido,
+      telefono,
     };
 
     try {
@@ -36,11 +55,14 @@ function Form({ dispatch }: FormProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newActivity),
+        body: JSON.stringify(newClient),
       });
 
       if (!response.ok) {
-        throw new Error("Error al guardar el cliente");
+        const errorResponse = await response.json();
+        const errorMessages = errorResponse.errors.map((err: { msg: string }) => err.msg).join(", ");
+        setMessage(`Error: ${errorMessages}`);
+        return;
       }
 
       const data = await response.json();
@@ -51,8 +73,10 @@ function Form({ dispatch }: FormProps) {
       setPlacas("");
       setAuto("");
       setColor("");
+      setApellido("");
+      setTelefono("");
     } catch (error) {
-      console.error(error);
+      console.error("Error al guardar el cliente:", error);
       setMessage("Error al guardar los datos");
     }
   };
@@ -73,6 +97,34 @@ function Form({ dispatch }: FormProps) {
           id="nombre"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <div>
+        <label htmlFor="apellido" className="block text-sm font-medium text-gray-700">
+          Apellido del Cliente
+        </label>
+        <input
+          type="text"
+          id="apellido"
+          value={apellido}
+          onChange={(e) => setApellido(e.target.value)}
+          className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+          required
+        />
+      </div>
+
+      <div>
+        <label htmlFor="telefono" className="block text-sm font-medium text-gray-700">
+          Teléfono del Cliente
+        </label>
+        <input
+          type="text"
+          id="telefono"
+          value={telefono}
+          onChange={(e) => setTelefono(e.target.value)}
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           required
         />

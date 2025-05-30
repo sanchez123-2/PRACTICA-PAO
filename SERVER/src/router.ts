@@ -68,6 +68,8 @@ router.delete('/clients/:id', deleteClient); // Eliminar cliente por ID
 router.post(
   '/clients/save',
   body('nombre').notEmpty().withMessage("El nombre es obligatorio"),
+  body('apellido').notEmpty().withMessage("El apellido es obligatorio"),
+  body('telefono').notEmpty().withMessage("El teléfono es obligatorio"),
   body('placas').notEmpty().withMessage("Las placas son obligatorias"),
   body('auto').notEmpty().withMessage("El auto es obligatorio"),
   body('color').notEmpty().withMessage("El color es obligatorio"),

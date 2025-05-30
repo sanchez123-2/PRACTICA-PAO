@@ -1,6 +1,7 @@
 import express from 'express';
 import router from './router';
 import db from './config/db';
+import cors from 'cors';
 
 async function connectDB() {
   try {
@@ -16,6 +17,7 @@ async function connectDB() {
 connectDB();
 const server = express();
 server.use(express.json());
+server.use(cors());
 server.use('/api', router);
 
 const PORT = process.env.PORT || 4000;
