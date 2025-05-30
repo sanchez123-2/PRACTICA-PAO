@@ -1,0 +1,34 @@
+@import "tailwindcss";
+@import "tailwindcss/utilities";
+
+/* Fondo animado */
+@keyframes road {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -200px 0;
+  }
+}
+
+.bg-road {
+  background-image: linear-gradient(to bottom, #444 20%, transparent 20%, transparent 40%, #444 40%, #444 60%, transparent 60%, transparent 80%, #444 80%);
+  background-size: 200px 200px;
+}
+
+.animate-road {
+  animation: road 5s linear infinite;
+}
+
+/* Fondo personalizado */
+.bg-parking {
+  background-image: url('./assets/est-fondo.jpg'); /* Ruta relativa desde index.css */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Fondo principal con gradiente */
+.bg-gradient {
+  background: linear-gradient(to bottom, #4facfe, #00f2fe); /* Azul degradado */
+}
