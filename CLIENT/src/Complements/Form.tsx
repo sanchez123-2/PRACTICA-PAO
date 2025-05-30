@@ -7,6 +7,8 @@ type FormProps = {
   state: ActivityState; // Ajusta el tipo del estado
 };
 
+const API_BASE_URL = "https://your-render-domain.com"; // Replace with your Render domain
+
 function Form({ dispatch }: FormProps) {
   const [nombre, setNombre] = useState("");
   const [placas, setPlacas] = useState("");
@@ -50,7 +52,7 @@ function Form({ dispatch }: FormProps) {
     };
 
     try {
-      const response = await fetch("http://localhost:4000/api/clients/save", {
+      const response = await fetch(`${API_BASE_URL}/api/clients/save`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
