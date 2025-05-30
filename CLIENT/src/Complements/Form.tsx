@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Dispatch } from "react";
-import { ActivityActions } from "../reducers/activity-reducers";
+import { ActivityActions, ActivityState } from "../reducers/activity-reducers";
 
 type FormProps = {
   dispatch: Dispatch<ActivityActions>;
-  state: any; // Ajusta el tipo según la estructura de `state` en `App.tsx`
+  state: ActivityState; // Ajusta el tipo del estado
 };
 
 function Form({ dispatch }: FormProps) {
