@@ -27,5 +27,5 @@ RUN cd /app/server && npm install cors @types/cors --force
 # Expose the ports for both client and server
 EXPOSE 3000 5173
 
-# Command to run both client and server
-CMD ["sh", "-c", "node dist/index.js & npx serve -s ../client/dist"]
+# Cambiar el comando para que el servidor sea el proceso principal y sirva el cliente
+CMD ["node", "dist/index.js"]
