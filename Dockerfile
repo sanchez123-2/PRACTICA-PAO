@@ -1,31 +1,16 @@
 # Use an official Node.js runtime as a parent image
-FROM node:18 AS builder
-
-# Set the working directory for the client
-WORKDIR /app/client
-
-# Copy client files
-COPY CLIENT/package.json CLIENT/package-lock.json ./
-RUN npm install
-COPY CLIENT/ .
-RUN npm run build
+FROM node:18
 
 # Set the working directory for the server
-WORKDIR /app/server
+WORKDIR /app
 
 # Copy server files
 COPY SERVER/package.json SERVER/package-lock.json ./
 RUN npm install
 COPY SERVER/ .
 
-# Reinstalar dependencias del servidor para asegurar que estén disponibles
-RUN cd /app/server && npm install --force
+# Expose the port for the server
+EXPOSE 3000
 
-# Verificar instalación de cors y sus tipos
-RUN cd /app/server && npm install cors @types/cors --force
-
-# Expose the ports for both client and server
-EXPOSE 3000 5173
-
-# Cambiar el comando para que el servidor sea el proceso principal y sirva el cliente
+# Command to run the server
 CMD ["node", "dist/index.js"]
