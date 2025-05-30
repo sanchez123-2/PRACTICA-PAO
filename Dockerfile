@@ -21,6 +21,9 @@ COPY SERVER/ .
 # Reinstalar dependencias del servidor para asegurar que estén disponibles
 RUN cd /app/server && npm install --force
 
+# Verificar instalación de cors y sus tipos
+RUN cd /app/server && npm install cors @types/cors --force
+
 # Expose the ports for both client and server
 EXPOSE 3000 5173
 
