@@ -17,7 +17,11 @@ async function connectDB() {
 connectDB();
 const server = express();
 server.use(express.json());
-server.use(cors());
+server.use(cors({
+  origin: '*', // Cambia '*' por el dominio específico si es necesario
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 server.use('/api', router);
 
 const PORT = process.env.PORT || 4000;
