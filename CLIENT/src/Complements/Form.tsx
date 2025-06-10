@@ -7,7 +7,7 @@ type FormProps = {
   state: ActivityState; // Ajusta el tipo del estado
 };
 
-const API_BASE_URL = "https://api-fullstack-ih76.onrender.com"; // Updated with the correct Render domain
+const API_BASE_URL = "http://localhost:8080"; // Updated with the correct Render domain
 
 function Form({ dispatch }: FormProps) {
   const [nombre, setNombre] = useState("");

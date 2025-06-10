@@ -2,7 +2,7 @@ services:
   client:
     build: ./CLIENT
     ports:
-      - "3001:80" # Changed to avoid conflict
+      - "5173:80" # Changed to avoid conflict
     restart: unless-stopped
     depends_on:
       - server
@@ -12,7 +12,7 @@ services:
   server:
     build: ./SERVER
     ports:
-      - "3000:3000" # Kept the same
+      - "8080:9090" # Kept the same
     env_file: .env
     environment:
       NODE_ENV: development
