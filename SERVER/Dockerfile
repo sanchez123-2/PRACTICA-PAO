@@ -11,8 +11,8 @@ COPY src ./src
 # Instala dependencias
 RUN npm install
 
-# Expone el puerto donde corre tu API (asegúrate que coincide con tu app, p.ej., 3001)
-EXPOSE 3000
+# Expone el puerto donde corre tu API (debe coincidir con la app, p.ej., 8080)
+EXPOSE 8080
 
 # Comando para desarrollo (puedes cambiar por otro si usas build separado)
 CMD ["npx", "nodemon", "--exec", "ts-node", "src/index.ts"]
