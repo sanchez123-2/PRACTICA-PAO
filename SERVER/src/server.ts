@@ -24,5 +24,10 @@ server.use(cors({
 }));
 server.use('/api', router);
 
+// Ruta de prueba para saber si el servidor está corriendo
+server.get('/', (req, res) => {
+  res.send('API corriendo');
+});
+
 
 export default server;
