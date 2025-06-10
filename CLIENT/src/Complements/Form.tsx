@@ -10,8 +10,8 @@ type FormProps = {
 // Detecta entorno Docker o local automáticamente
 const API_BASE_URL =
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-    ? "http://localhost:8080"
-    : "http://server:9090";
+    ? "http://server:9090"
+    : "https://practica-pao.onrender.com";
 
 function Form({ dispatch }: FormProps) {
   const [nombre, setNombre] = useState("");
